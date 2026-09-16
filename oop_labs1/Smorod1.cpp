@@ -12,10 +12,20 @@
     }
     cout << "\n";
  }
+ void swapElements(int (&arr)[10], int &idx1, int &idx2){
+    int musor = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = musor;
+ }
 
  int main(){
     int arr[10];
     fillArray(arr);
+    cout<< "Array: ";
+    printArray(arr);
+    int i1=0, i2=1;
+    swapElements(arr, i1, i2);
+    cout << "swap: ";
     printArray(arr);
     return 0;
  }
