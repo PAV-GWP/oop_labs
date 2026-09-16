@@ -1,6 +1,9 @@
  #include <iostream>
  using namespace std;
 
+ /// @brief Находит первый отрицательный элемент, уменьшает динамический массив до него и пересоздает память
+ /// @param arr Ссылка на указатель на динамический массив (int*&)
+ /// @param size Ссылка на размер массива (int&)
  void process(int*& arr, int& size){
     int negative = -1;
     for (int i = 0; i<size; i++){
