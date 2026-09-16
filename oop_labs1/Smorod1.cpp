@@ -17,6 +17,11 @@
     arr[idx1] = arr[idx2];
     arr[idx2] = musor;
  }
+ void multiplyByTwo(int (&arr)[10]){
+    for (int& x :arr){
+        x*=2;
+    }
+ }
 
  int main(){
     int arr[10];
@@ -26,6 +31,9 @@
     int i1=0, i2=1;
     swapElements(arr, i1, i2);
     cout << "swap: ";
+    printArray(arr);
+    multiplyByTwo(arr);
+    cout << "multiplyByTwo: \n";
     printArray(arr);
     return 0;
  }
