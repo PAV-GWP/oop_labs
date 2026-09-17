@@ -20,6 +20,11 @@
     }
     return arr.data[index];
  }
+ void printSafe(const safeArray& arr){
+    for (int i=0; i<arr.size; i++){
+        cout << arr.data[i]<<" ";
+    }
+ }
  int main (){
     int N;
     cout << "N: "; cin >> N;
