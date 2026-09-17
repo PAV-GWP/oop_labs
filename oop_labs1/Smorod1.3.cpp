@@ -1,17 +1,23 @@
  #include <iostream>
  using namespace std;
-
+ /// @brief Структура для представления безопасного динамического массива
  struct safeArray{
     int* data;
     int size;
  };
-
+ /// @brief Создает новый безопасный массив заданного размера
+ /// @param size Размер создаваемого массива
+ /// @return Возвращает структуру safeArray по значению
  safeArray createArray(int size){
     safeArray arr;
     arr.size = size;
     arr.data = new int[size]{};
     return arr;
  }
+ /// @brief Безопасный доступ к элементу массива по индексу (поддерживает левую сторону присваивания)
+ /// @param arr Ссылка на структуру safeArray
+ /// @param index Индекс запрашиваемого элемента
+ /// @return Ссылка на элемент массива или на статическую заглушку при выходе за границы
  int& getElement(safeArray& arr, int index){
     static int dummy = -999;
     if (index <0 || index>=arr.size){
@@ -20,11 +26,16 @@
     }
     return arr.data[index];
  }
+ /// @brief Выводит элементы массива на экран (только для чтения)
+ /// @param arr Константная ссылка на структуру safeArray
  void printSafe(const safeArray& arr){
     for (int i=0; i<arr.size; i++){
         cout << arr.data[i]<<" ";
     }
  }
+ /// @brief Изменяет размер массива с сохранением существующих данных
+ /// @param arr Ссылка на структуру safeArray
+ /// @param newSize Новый размер массива
  void reSizeArray(safeArray& arr, int newSize){
     if (newSize == arr.size) return;
     int* newData = new int[newSize]{};
