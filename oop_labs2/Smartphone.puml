@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+enum DeviceState {
+    Off
+    On
+}
+
+class Smartphone {
+    - m_model : std::string
+    - m_battery : int
+    - m_memoryGb : int
+    - m_state : DeviceState
+    - {static} s_activeCount : int
+
+    + Smartphone()
+    + Smartphone(model : std::string, memoryGb : int)
+    + Smartphone(model : std::string, battery : int, memoryGb : int, state : DeviceState)
+    + ~Smartphone()
+
+    + turnOn() : void
+    + turnOff() : void
+    + charge(amount : int) : void
+    + useBattery(amount : int) : bool
+    + print() : void
+
+    + getModel() : std::string
+    + getBattery() : int
+    + getMemoryGb() : int
+    + getState() : DeviceState
+    + {static} getActiveCount() : int
+}
+
+Smartphone +-- DeviceState
+@enduml
