@@ -222,3 +222,13 @@ bool Smartphone::useBattery(int amount)
 
     return true;
 }
+void Smartphone::printInfo() const
+{
+    cout << "-----------------------------" << endl;
+    cout << "Модель: " << model << endl;
+    cout << "Память: " << memory << " ГБ" << endl;
+    cout << "Ёмкость батареи: " << battery.capacity << " мА·ч" << endl;
+    cout << "Заряд: " << battery.level << "%" << endl;
+    cout << "Состояние: " << (isPoweredOn ? "включен" : "выключен") << endl;
+    cout << "-----------------------------" << endl;
+}
