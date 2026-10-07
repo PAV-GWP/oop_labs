@@ -66,5 +66,46 @@ int main()
     {
         cout << "Телефон 2 израсходовал 40% заряда." << endl;
     }
+
+    cout << endl;
+    cout << "===== НЕКОРРЕКТНЫЕ ОПЕРАЦИИ =====" << endl;
+
+    try
+    {
+        cout << "Попытка использовать заряд выключенного Телефона 3:" << endl;
+        phone3.useBattery(15);
+    }
+    catch (const exception& e)
+    {
+        cout << e.what() << endl;
+    }
+
+    try
+    {
+        phone1.charge(-30);
+    }
+    catch (const exception& e)
+    {
+        cout << e.what() << endl;
+    }
+
+    if (!phone1.useBattery(95))
+    {
+        cout << "Ошибка: недостаточно заряда на аккумуляторе Телефона 1." << endl;
+    }
+    try
+    {
+        Smartphone badPhone(
+            "", 
+            -64, 
+            Battery{150, -1000}, 
+            false
+        );
+    }
+    catch (const exception& e)
+    {
+        cout << e.what() << endl;
+    }
+
     return 0;
 }
