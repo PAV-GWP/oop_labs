@@ -1,0 +1,38 @@
+#include <iostream>
+#include <stdexcept>
+
+#include "smartphone.h"
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+
+    cout << "Лабораторная работа №2 по ООП" << endl;
+    cout << "Вариант 10: Мобильный телефон (Smartphone)" << endl;
+    cout << endl;
+
+    // 1. Конструктор без параметров
+    Smartphone phone1;
+
+    // 2. Полный параметризованный конструктор
+    Smartphone phone2(
+        "Apple iPhone 67",
+        256,
+        Battery{80, 3349},
+        true
+    );
+
+    // 3. Сокращённый параметризованный конструктор (делегирующий)
+    Smartphone phone3(
+        "Samsung Galaxy S67",
+        512
+    );
+
+    cout << "Количество существующих объектов: "
+         << Smartphone::getObjectCount()
+         << endl;
+
+    return 0;
+}
