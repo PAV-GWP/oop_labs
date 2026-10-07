@@ -130,3 +130,32 @@ Smartphone::~Smartphone()
 
     objectCount--;
 }
+string Smartphone::getModel() const
+{
+    return model;
+}
+
+int Smartphone::getMemory() const
+{
+    return memory;
+}
+
+int Smartphone::getBatteryLevel() const
+{
+    return battery.level;
+}
+
+int Smartphone::getBatteryCapacity() const
+{
+    return battery.capacity;
+}
+
+bool Smartphone::isOn() const
+{
+    return isPoweredOn;
+}
+
+int Smartphone::getObjectCount()
+{
+    return objectCount;
+}
