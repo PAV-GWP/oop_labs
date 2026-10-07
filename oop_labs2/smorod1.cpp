@@ -40,3 +40,45 @@
                     3. Нельзя расходовать заряд выключенного устройства
                     4. Нельзя включить устройство с зарядом 0%
 */
+
+#include "smartphone.h"
+#include <stdexcept>
+
+int Smartphone::objectCount = 0;
+
+void Smartphone::validateModel(const string& model) const
+{
+    if (model.empty())
+    {
+        throw invalid_argument(
+            "Ошибка: название модели не может быть пустым."
+        );
+    }
+}
+
+void Smartphone::validateMemory(int memory) const
+{
+    if (memory <= 0)
+    {
+        throw invalid_argument(
+            "Ошибка: объём встроенной памяти должен быть больше 0 ГБ."
+        );
+    }
+}
+
+void Smartphone::validateBattery(const Battery& battery) const
+{
+    if (battery.level < 0 || battery.level > 100)
+    {
+        throw invalid_argument(
+            "Ошибка: уровень заряда аккумулятора должен быть в диапазоне от 0 до 100%."
+        );
+    }
+
+    if (battery.capacity <= 0)
+    {
+        throw invalid_argument(
+            "Ошибка: ёмкость аккумулятора должна быть больше 0 мА·ч."
+        );
+    }
+}
