@@ -159,3 +159,66 @@ int Smartphone::getObjectCount()
 {
     return objectCount;
 }
+void Smartphone::turnOn()
+{
+    if (battery.level == 0)
+    {
+        throw runtime_error(
+            "Ошибка: невозможно включить устройство с разряженным аккумулятором (0%)."
+        );
+    }
+    isPoweredOn = true;
+}
+
+void Smartphone::turnOff()
+{
+    isPoweredOn = false;
+}
+
+void Smartphone::charge(int amount)
+{
+    if (amount <= 0)
+    {
+        throw invalid_argument(
+            "Ошибка: величина заряда должна быть больше нуля."
+        );
+    }
+
+    battery.level += amount;
+    if (battery.level > 100)
+    {
+        battery.level = 100;
+    }
+}
+
+bool Smartphone::useBattery(int amount)
+{
+    if (!isPoweredOn)
+    {
+        throw runtime_error(
+            "Ошибка: нельзя использовать батарею выключенного устройства."
+        );
+    }
+
+    if (amount <= 0)
+    {
+        throw invalid_argument(
+            "Ошибка: расход батареи должен быть больше нуля."
+        );
+    }
+
+    if (amount > battery.level)
+    {
+        return false;
+    }
+
+    battery.level -= amount;
+
+    if (battery.level == 0)
+    {
+        isPoweredOn = false;
+        cout << "[Уведомление] Аккумулятор полностью разряжен. Устройство выключено." << endl;
+    }
+
+    return true;
+}
