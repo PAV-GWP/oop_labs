@@ -48,6 +48,23 @@ int main()
     cout << endl;
     cout << "Телефон 3:" << endl;
     phone3.printInfo();
-    
+
+    cout << endl;
+    cout << "===== КОРРЕКТНЫЕ ОПЕРАЦИИ =====" << endl;
+
+    phone1.turnOn();
+    cout << "Телефон 1 успешно включен." << endl;
+
+    if (phone1.useBattery(20))
+    {
+        cout << "Телефон 1 израсходовал 20% заряда." << endl;
+    }
+    phone2.charge(15);
+    cout << "Телефон 2 пополнен на 15% заряда." << endl;
+
+    if (phone2.useBattery(40))
+    {
+        cout << "Телефон 2 израсходовал 40% заряда." << endl;
+    }
     return 0;
 }
