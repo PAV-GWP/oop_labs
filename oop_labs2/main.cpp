@@ -33,6 +33,21 @@ int main()
     cout << "Количество существующих объектов: "
          << Smartphone::getObjectCount()
          << endl;
+    
+    cout << endl;
+    cout << "===== НАЧАЛЬНОЕ СОСТОЯНИЕ =====" << endl;
 
+    cout << endl;
+    cout << "Телефон 1:" << endl;
+    phone1.printInfo();
+
+    cout << endl;
+    cout << "Телефон 2:" << endl;
+    phone2.printInfo();
+
+    cout << endl;
+    cout << "Телефон 3:" << endl;
+    phone3.printInfo();
+    
     return 0;
 }
