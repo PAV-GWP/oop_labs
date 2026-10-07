@@ -17,4 +17,8 @@ class Smatrphone {
     Battery battery;
 
     static int objectCount;
+    
+    void validateModel(const string& model) const;
+    void validateMemory(int memory) const;
+    void validateBattery(const Battery& battery) const;
 };
