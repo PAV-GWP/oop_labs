@@ -82,3 +82,51 @@ void Smartphone::validateBattery(const Battery& battery) const
         );
     }
 }
+
+Smartphone::Smartphone()
+    : model("Стандартный телефон"),
+      memory(64),
+      isPoweredOn(false),
+      battery{50, 4000}
+{
+    objectCount++;
+}
+
+Smartphone::Smartphone(
+    const string& model,
+    int memory,
+    const Battery& battery,
+    bool isPoweredOn)
+    : model(model),
+      memory(memory),
+      isPoweredOn(isPoweredOn),
+      battery(battery)
+{
+    validateModel(model);
+    validateMemory(memory);
+    validateBattery(battery);
+    if (this->battery.level == 0 && this->isPoweredOn)
+    {
+        this->isPoweredOn = false;
+    }
+
+    objectCount++;
+}
+Smartphone::Smartphone(
+    const string& model,
+    int memory)
+    : Smartphone(
+        model,
+        memory,
+        Battery{100, 4000},
+        false)
+{
+}
+Smartphone::~Smartphone()
+{
+    cout << "Деструктор: смартфон \""
+         << model
+         << "\" уничтожен." << endl;
+
+    objectCount--;
+}
