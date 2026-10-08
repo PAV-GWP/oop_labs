@@ -1,13 +1,14 @@
 #include <iostream>
 #include <stdexcept>
-
+#include <windows.h>
 #include "smartphone.h"
 
 using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
+    SetConsoleOutputCP(65001); 
+    SetConsoleCP(65001);
 
     cout << "Лабораторная работа №2 по ООП" << endl;
     cout << "Вариант 10: Мобильный телефон (Smartphone)" << endl;
@@ -107,5 +108,43 @@ int main()
         cout << e.what() << endl;
     }
 
+    cout << endl;
+    cout << "===== СОСТОЯНИЕ ПОСЛЕ ОПЕРАЦИЙ =====" << endl;
+
+    cout << endl;
+    cout << "Телефон 1:" << endl;
+    phone1.printInfo();
+
+    cout << endl;
+    cout << "Телефон 2:" << endl;
+    phone2.printInfo();
+
+    cout << endl;
+    cout << "Телефон 3:" << endl;
+    phone3.printInfo();
+
+    cout << endl;
+    cout << "===== ПРОВЕРКА НЕЗАВИСИМОСТИ ОБЪЕКТОВ =====" << endl;
+
+    int phone2BatteryBefore = phone2.getBatteryLevel();
+    int phone3BatteryBefore = phone3.getBatteryLevel();
+
+    phone1.charge(30);
+
+    cout << "Изменён только Телефон 1 (заряжен на 30%)." << endl;
+    cout << "Заряд Телефона 1: " << phone1.getBatteryLevel() << "%" << endl;
+    cout << "Заряд Телефона 2: " << phone2.getBatteryLevel() << "%" << endl;
+    cout << "Заряд Телефона 3: " << phone3.getBatteryLevel() << "%" << endl;
+
+    if (phone2.getBatteryLevel() == phone2BatteryBefore &&
+        phone3.getBatteryLevel() == phone3BatteryBefore)
+    {
+        cout << "Состояние других объектов не изменилось." << endl;
+    }
+
+    cout << endl;
+    cout << "Количество существующих объектов перед завершением main: "
+         << Smartphone::getObjectCount()
+         << endl;
     return 0;
 }
