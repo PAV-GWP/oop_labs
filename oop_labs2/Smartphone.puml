@@ -1,35 +1,43 @@
 @startuml
-skinparam classAttributeIconSize 0
 
-enum DeviceState {
-    Off
-    On
+title UML-диаграмма класса Smartphone (Вариант 10)
+
+class Battery <<struct>> {
+    + level : int
+    + capacity : int
 }
 
 class Smartphone {
-    - m_model : std::string
-    - m_battery : int
-    - m_memoryGb : int
-    - m_state : DeviceState
-    - {static} s_activeCount : int
+    - model : string
+    - memory : int
+    - isPoweredOn : bool
+    - battery : Battery
+    - {static} objectCount : int
+
+    - validateModel(model : string) : void
+    - validateMemory(memory : int) : void
+    - validateBattery(battery : Battery) : void
 
     + Smartphone()
-    + Smartphone(model : std::string, memoryGb : int)
-    + Smartphone(model : std::string, battery : int, memoryGb : int, state : DeviceState)
+    + Smartphone(model : string, memory : int, battery : Battery, isPoweredOn : bool)
+    + Smartphone(model : string, memory : int)
     + ~Smartphone()
+
+    + getModel() : string
+    + getMemory() : int
+    + getBatteryLevel() : int
+    + getBatteryCapacity() : int
+    + isOn() : bool
 
     + turnOn() : void
     + turnOff() : void
     + charge(amount : int) : void
     + useBattery(amount : int) : bool
-    + print() : void
 
-    + getModel() : std::string
-    + getBattery() : int
-    + getMemoryGb() : int
-    + getState() : DeviceState
-    + {static} getActiveCount() : int
+    + printInfo() : void
+    + {static} getObjectCount() : int
 }
 
-Smartphone +-- DeviceState
+Smartphone *-- Battery : содержит
+
 @enduml
