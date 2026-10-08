@@ -5,6 +5,8 @@
 
 using namespace std;
 
+/// @brief Главная функция программы
+/// @return Код завершения программы (0 — успешное выполнение)
 int main()
 {
     SetConsoleOutputCP(65001); 
