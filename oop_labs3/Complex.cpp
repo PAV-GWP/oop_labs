@@ -173,3 +173,73 @@ Complex& Complex::operator/=(const Complex& other)
     addHistory("Деление с присваиванием (/)");
     return *this;
 }
+
+// Расчет модуля комплексного числа
+double Complex::getMagnitude() const
+{
+    return std::sqrt(real * real + imag * imag);
+}
+
+// Бинарные
+// Первый аргумент lhs принимается по значению (создается копия),
+// к нему применяется составное присваивание и он возвращается.
+Complex operator+(Complex lhs, const Complex& rhs)
+{
+    lhs += rhs; // используем  +=
+    return lhs;
+}
+
+Complex operator-(Complex lhs, const Complex& rhs)
+{
+    lhs -= rhs; // используем  -=
+    return lhs;
+}
+
+Complex operator*(Complex lhs, const Complex& rhs)
+{
+    lhs *= rhs; // используем  *=
+    return lhs;
+}
+
+Complex operator/(Complex lhs, const Complex& rhs)
+{
+    lhs /= rhs; // используем  /=
+    return lhs;
+}
+
+// сравнения
+// Равенство: равны и действительная, и мнимая части
+bool Complex::operator==(const Complex& other) const
+{
+    return (real == other.real) && (imag == other.imag);
+}
+
+// Неравенство: отрицание равенства
+bool Complex::operator!=(const Complex& other) const
+{
+    return !(*this == other);
+}
+
+// Меньше: сравнение модулей
+bool Complex::operator<(const Complex& other) const
+{
+    return this->getMagnitude() < other.getMagnitude();
+}
+
+// Больше: сравнение модулей
+bool Complex::operator>(const Complex& other) const
+{
+    return this->getMagnitude() > other.getMagnitude();
+}
+
+// Меньше или равно: не больше
+bool Complex::operator<=(const Complex& other) const
+{
+    return !(*this > other);
+}
+
+// Больше или равно: не меньше
+bool Complex::operator>=(const Complex& other) const
+{
+    return !(*this < other);
+}
