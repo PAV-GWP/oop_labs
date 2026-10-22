@@ -243,3 +243,27 @@ bool Complex::operator>=(const Complex& other) const
 {
     return !(*this < other);
 }
+
+// Ввод Вывод
+// Вывод в поток: форматирует в виде (a + bi) или (a - bi)
+std::ostream& operator<<(std::ostream& os, const Complex& c)
+{
+    c.accessCount++; // использование mutable-поля
+    os << "(" << c.real;
+    if (c.imag >= 0)
+    {
+        os << " + " << c.imag << "i)";
+    }
+    else
+    {
+        os << " - " << std::abs(c.imag) << "i)";
+    }
+    return os;
+}
+
+// Ввод из потока: считывает действительную и мнимую части
+std::istream& operator>>(std::istream& is, Complex& c)
+{
+    is >> c.real >> c.imag;
+    return is;
+}
