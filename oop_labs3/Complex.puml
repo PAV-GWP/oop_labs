@@ -1,0 +1,67 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Complex {
+    - real : double
+    - imag : double
+    - mutable accessCount : int
+    - {static} objectCount : int
+    - {static} history : std::vector<std::string>
+
+    + Complex()
+    + explicit Complex(r : double)
+    + Complex(r : double, i : double)
+    + ~Complex()
+
+    + getReal() : double {query}
+    + getImag() : double {query}
+    + getAccessCount() : int {query}
+    + getMagnitude() : double {query}
+    + print() : void {query}
+
+    + {static} getObjectCount() : int
+    + {static} printHistory() : void
+    + {static} addHistory(operation : const std::string&) : void
+
+    ' Унарные операции
+    + operator++() : Complex&
+    + operator++(int) : Complex
+    + operator--() : Complex&
+    + operator--(int) : Complex
+
+    ' Арифметические присваивания
+    + operator+=(other : const Complex&) : Complex&
+    + operator-=(other : const Complex&) : Complex&
+    + operator*=(other : const Complex&) : Complex&
+    + operator/=(other : const Complex&) : Complex&
+
+    ' Операторы сравнения
+    + operator==(other : const Complex&) : bool {query}
+    + operator!=(other : const Complex&) : bool {query}
+    + operator<(other : const Complex&) : bool {query}
+    + operator>(other : const Complex&) : bool {query}
+    + operator<=(other : const Complex&) : bool {query}
+    + operator>=(other : const Complex&) : bool {query}
+
+    ' Дружественные функции (Бинарные операции)
+    {static} + operator+(lhs : Complex, rhs : const Complex&) : Complex
+    {static} + operator-(lhs : Complex, rhs : const Complex&) : Complex
+    {static} + operator*(lhs : Complex, rhs : const Complex&) : Complex
+    {static} + operator/(lhs : Complex, rhs : const Complex&) : Complex
+
+    ' Дружественные функции ввода-вывода
+    {static} + operator<<(os : std::ostream&, c : const Complex&) : std::ostream&
+    {static} + operator>>(is : std::istream&, c : Complex&) : std::istream&
+}
+
+note right of Complex::accessCount
+  Модификатор mutable позволяет менять
+  значение поля в константных методах
+end note
+
+note right of Complex::history
+  Хранилище истории выполненцных
+  математических операций калькулятора
+end note
+
+@enduml
