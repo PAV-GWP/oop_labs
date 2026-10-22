@@ -1,3 +1,9 @@
+/**
+ * @file Complex.cpp
+ * @brief Файл реализации методов и операций класса Complex.
+ * @author Царицон Павел
+ * @date 2026
+ */
 #include "Complex.h"
 #include <cmath>
 #include <stdexcept>
