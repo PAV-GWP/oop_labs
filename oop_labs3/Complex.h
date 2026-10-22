@@ -43,4 +43,18 @@ public:
     Complex& operator-=(const Complex& other);
     Complex& operator*=(const Complex& other);
     Complex& operator/=(const Complex& other);
+
+    double getMagnitude() const;
+    // Реализуются через friend-функции с переиспользованием +=, -=, *=, /=
+    friend Complex operator+(Complex lhs, const Complex& rhs);
+    friend Complex operator-(Complex lhs, const Complex& rhs);
+    friend Complex operator*(Complex lhs, const Complex& rhs);
+    friend Complex operator/(Complex lhs, const Complex& rhs);
+
+    bool operator==(const Complex& other) const;
+    bool operator!=(const Complex& other) const;
+    bool operator<(const Complex& other) const;
+    bool operator>(const Complex& other) const;
+    bool operator<=(const Complex& other) const;
+    bool operator>=(const Complex& other) const;
 };
