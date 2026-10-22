@@ -1,5 +1,6 @@
 #include "Complex.h"
 #include <cmath>
+#include <stdexcept>
 
 // выделяем память под статик полей
 int Complex::objectCount = 0;
@@ -123,4 +124,52 @@ Complex Complex::operator--(int)
     real -= 1.0;
     addHistory("Постфиксный декремент (real--)");
     return temp;
+}
+
+// арифм присваивание
+
+Complex& Complex::operator+=(const Complex& other)
+{
+    real += other.real;
+    imag += other.imag;
+    addHistory("Сложение с присваиванием (+)");
+    return *this;
+}
+
+Complex& Complex::operator-=(const Complex& other)
+{
+    real -= other.real;
+    imag -= other.imag;
+    addHistory("Вычитание с присваиванием (-)");
+    return *this;
+}
+
+Complex& Complex::operator*=(const Complex& other)
+{
+    // Временные переменные нужны, чтобы при расчете imag 
+    // не использовать уже перезаписанный real
+    double newReal = real * other.real - imag * other.imag;
+    double newImag = real * other.imag + imag * other.real;
+
+    real = newReal;
+    imag = newImag;
+    addHistory("Умножение с присваиванием (*)");
+    return *this;
+}
+
+Complex& Complex::operator/=(const Complex& other)
+{
+    double denominator = other.real * other.real + other.imag * other.imag;
+    if (denominator == 0.0)
+    {
+        throw std::invalid_argument("Ошибка: деление на ноль (нулевое комплексное число).");
+    }
+
+    double newReal = (real * other.real + imag * other.imag) / denominator;
+    double newImag = (imag * other.real - real * other.imag) / denominator;
+
+    real = newReal;
+    imag = newImag;
+    addHistory("Деление с присваиванием (/)");
+    return *this;
 }
