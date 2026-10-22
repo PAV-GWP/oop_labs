@@ -38,4 +38,9 @@ public:
 
     // Постфиксный декремент: z--
     Complex operator--(int);
+
+    Complex& operator+=(const Complex& other);
+    Complex& operator-=(const Complex& other);
+    Complex& operator*=(const Complex& other);
+    Complex& operator/=(const Complex& other);
 };
