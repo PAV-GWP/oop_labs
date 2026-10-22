@@ -27,4 +27,15 @@ public:
     static void addHistory(const std::string& operation);
 
     void print() const;
+    // Префиксный инкремент: ++z 
+    Complex& operator++();
+
+    // Постфиксный инкремент: z++
+    Complex operator++(int);
+
+    // Префиксный декремент: --z
+    Complex& operator--();
+
+    // Постфиксный декремент: z--
+    Complex operator--(int);
 };
