@@ -91,3 +91,36 @@ void Complex::print() const
         std::cout << real << " - " << std::abs(imag) << "i";
     }
 }
+
+Complex& Complex::operator++()
+{
+    real += 1.0;
+    addHistory("Префиксный инкремент (++real)");
+    return *this; // возвращаем ссылку на сам текущий объект
+}
+
+
+Complex Complex::operator++(int)
+{
+    Complex temp = *this; // 1. создали копию с текущим состоянием
+    real += 1.0;          // 2. изменили себя
+    addHistory("Постфиксный инкремент (real++)");
+    return temp;          // 3. вернули старую копию
+}
+
+
+Complex& Complex::operator--()
+{
+    real -= 1.0;
+    addHistory("Префиксный декремент (--real)");
+    return *this;
+}
+
+
+Complex Complex::operator--(int)
+{
+    Complex temp = *this;
+    real -= 1.0;
+    addHistory("Постфиксный декремент (real--)");
+    return temp;
+}
