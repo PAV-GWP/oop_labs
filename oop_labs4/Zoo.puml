@@ -1,0 +1,75 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Animal {
+    # name : char*
+    # age : int
+    - {static} totalCount : int
+    - {static} oldestAnimal : Animal*
+    + Animal(name : const char*, age : int)
+    + Animal(other : const Animal&)
+    + operator=(other : const Animal&) : Animal&
+    + virtual ~Animal()
+    + {abstract} virtual makeSound() : void
+    + virtual move() : void
+    + {abstract} virtual getSpecies() : const char*
+    + virtual printInfo() : void
+    + {static} getTotalCount() : int
+    + {static} getOldestAnimal() : Animal*
+    + {friend} printAnimalInfo(a : const Animal&) : void
+}
+
+class Mammal {
+    # gestationPeriod : int
+    # nursing : bool
+    + Mammal(...)
+    + move() override : void
+    + printInfo() override : void
+}
+
+class Bird {
+    # wingspan : double
+    # canFly : bool
+    + Bird(...)
+    + move() override : void
+    + printInfo() override : void
+}
+
+class Lion {
+    - prideSize : int
+    + Lion(...)
+    + makeSound() override : void
+    + getSpecies() override : const char*
+    + printInfo() override : void
+}
+
+class Parrot {
+    - vocabularySize : int
+    + Parrot(...)
+    + makeSound() override : void
+    + getSpecies() override : const char*
+    + printInfo() override : void
+}
+
+class Bat {
+    - echolocationFreq : double
+    + Bat(...)
+    + makeSound() override : void
+    + move() override : void
+    + getSpecies() override : const char*
+    + printInfo() override : void
+}
+
+Animal <|-- Mammal : virtual
+Animal <|-- Bird : virtual
+Mammal <|-- Lion
+Bird <|-- Parrot
+Mammal <|-- Bat
+Bird <|-- Bat
+
+note right of Bat
+  Множественное наследование
+  (Ромбовидное наследование)
+end note
+
+@enduml
